@@ -11,8 +11,8 @@ module.exports = {
         const userKeys = Object.keys(server.users)
         for (let i = 0; i < userKeys.length; i++) {
             const user = server.users[userKeys[i]];
-            onlineUsers += chalk.hex(user.color)(user.name)
-            if (i < server.users.length - 1) onlineUsers += ", "
+            onlineUsers += chalk.hex(user.color)(user.name);
+            if (i !== userKeys.length - 1) onlineUsers += ", "
         }
         msg.send("Online: [" + onlineUsers + "]");
     }
