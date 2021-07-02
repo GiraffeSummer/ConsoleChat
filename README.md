@@ -1,4 +1,4 @@
-"# ConsoleChat" 
+# ConsoleChat
 
 This is a dumb project I worked on to learn.
 And just to see if I could get it to work.
