@@ -49,9 +49,7 @@ Args are the arguments passed to the command, for example if you run
 <br>    
     
 
-Some fun features to know, it turns out you can use packages I've used,  
-(look at `./commands/test.js`)   
-Packages that I've used that might be relevant are: chalk, figlet, boxen
+A fun feature to know, it turns out you can use npm packages, you just need to run: `npm i [package]` in `\Documents\cmdChat\commands\`
 
 <br>
 

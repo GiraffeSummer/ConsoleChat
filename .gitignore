@@ -116,3 +116,5 @@ dist
 .pnp.*
 /build
 chat.json
+#ignore shortcuts
+*.lnk
