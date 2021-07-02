@@ -19,8 +19,8 @@
   },
   "pkg": {
     "assets": "node_modules/**/*",
-    "output": "build",
-    "outputPath": "build"
+    "outputPath": "build",
+    "scripts": "commands/*.js"
   },
   "bin": "index.js",
   "directories": {
