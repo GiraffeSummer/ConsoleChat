@@ -1,13 +1,16 @@
-
+const os = require("os");
 const rs = require('readline-sync');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const boxen = require('boxen');
 const { NeuDB } = require('./lib/NeuDB.js');
 
-const data = { name: "", color: "#ffffff", beep: true }
 
-const db = new NeuDB(data, true, './chat.json');
+const saveFolder = os.homedir() + "\\Documents\\cmdChat";
+
+const data = { name: "", color: "#ffffff", beep: true, commandPath: saveFolder + '/commands' };
+
+const db = new NeuDB(data, true, saveFolder + '/chat.json');
 module.exports.db = db;
 
 if (db.get("name") == "") {
