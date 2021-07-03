@@ -138,6 +138,8 @@ function GetSavePath() {
         const homeDir = os.homedir();
         _path = homeDir + "/Documents" + "/cmdChat";
     } else {
+        if(os.userInfo().username == 'root') throw new Error('Do not run as root!');
+        
         _path = '/home/' + os.userInfo().username;
     }
     console.log(_path);
