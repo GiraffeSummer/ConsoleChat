@@ -133,7 +133,7 @@ function RandomColor() {
 }
 
 function GetSavePath() {
-    const _path = '';
+    let _path = '';
     if (os.platform() == 'win32') {
         const homeDir = os.homedir();
         _path = homeDir + "/Documents" + "/cmdChat";
