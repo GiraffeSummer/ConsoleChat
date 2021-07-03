@@ -55,7 +55,10 @@ const MainMenu = (args = undefined) => {
             else
                 connUrl = rs.question("server to connect to: (http://localhost:80) ", { defaultInput: "http://localhost:80" });
 
-            require("./lib/socket-client.js")(connUrl);
+            const user = db.get();
+            const client = { name: user.name, color: user.color }
+
+            require("./lib/socket-client.js")(connUrl, client);
             break;
 
         case 'server':
@@ -65,7 +68,7 @@ const MainMenu = (args = undefined) => {
             else
                 port = rs.questionInt("server port: (80) ", { defaultInput: 80 });
 
-            require("./lib/socket-server.js")(port);
+            require("./lib/socket-server.js").start(port);
             break;
         case menuOptions[2]:
             console.log("this is not implemented yet, please edit 'chat.json' for now");
