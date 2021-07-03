@@ -33,11 +33,23 @@ The message object:
 Furthermore there are 2 functions you can call from the msg object:
 
 + ### send:
-    send will send a message to all the users in the server.  
-    example: `msg.send("message text");`
+    Send will send a message to all the users in the channel.  
+    Example: `msg.send("message text");`
 + ### reply:
-    reply will send a message just to the person who executed the command.  
-    example: `msg.reply("message text");`
+    Reply will send a message just to the person who executed the command.  
+    Example: `msg.reply("message text");`
+
++ ### broadcast:
+    Send will send a message to all the users in the server, across all channels.  
+    Example: `msg.broadcast("message text");`
+
+
+You can also access the socket object through `msg.user.socket` I might eventually exclude this for safety, but I'm not sure  yet.
+  
+You can access the user's channel through `msg.user.channel`.
+
+
+
 
 <br>
 
@@ -53,4 +65,6 @@ A fun feature to know, it turns out you can use npm packages, you just need to r
 
 <br>
 
-This was all there is to know at this moment, I hopefully will add more features, and feel free to suggest features!
+This was all there is to know at this moment, I hopefully will add more features.
+  
+If anyone requires more data or functions feel free to suggest it!
