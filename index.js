@@ -72,6 +72,7 @@ const MainMenu = (args = undefined) => {
             break;
         case menuOptions[2]:
             console.log("this is not implemented yet, please edit 'chat.json' for now");
+            MainMenu();
             break;
         case 'exit()':
             process.exit();
