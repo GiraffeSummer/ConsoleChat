@@ -140,6 +140,7 @@ function GetSavePath() {
     } else {
         _path = '/home/' + os.userInfo().username;
     }
+    console.log(_path);
     return _path + '/cmdChat';
 }
 
