@@ -6,8 +6,8 @@ const figlet = require('figlet');
 const boxen = require('boxen');
 const { NeuDB } = require('./lib/NeuDB.js');
 
-const homeDir = os.homedir();
-const saveFolder = homeDir + ((fs.existsSync(homeDir + "/Documents")) ? "/Documents" : '') + "/cmdChat";
+const saveFolder = GetSavePath();
+
 
 const data = { name: "", color: "#ffffff", beep: true, commandPath: saveFolder + '/commands' };
 
@@ -132,6 +132,16 @@ function RandomColor() {
     return color;
 }
 
+function GetSavePath() {
+    const _path = '';
+    if (os.platform() == 'win32') {
+        const homeDir = os.homedir();
+        _path = homeDir + "/Documents" + "/cmdChat";
+    } else {
+        _path = '/home/' + os.userInfo().username;
+    }
+    return _path + '/cmdChat';
+}
 
 //greeting user
 //console.log(chalk.hex(data.user.color)(`Hello ${db.get("user").name}\n`));
