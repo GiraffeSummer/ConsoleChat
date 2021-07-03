@@ -136,7 +136,7 @@ function GetSavePath() {
     let _path = '';
     if (os.platform() == 'win32') {
         const homeDir = os.homedir();
-        _path = homeDir + "/Documents" + "/cmdChat";
+        _path = homeDir + "/Documents";
     } else {
         if(os.userInfo().username == 'root') throw new Error('Do not run as root!');
         
