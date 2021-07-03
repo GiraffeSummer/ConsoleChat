@@ -1,12 +1,13 @@
 const os = require("os");
+const fs = require("fs");
 const rs = require('readline-sync');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const boxen = require('boxen');
 const { NeuDB } = require('./lib/NeuDB.js');
 
-
-const saveFolder = os.homedir() + "\\Documents\\cmdChat";
+const homeDir = os.homedir()
+const saveFolder = (fs.existsSync(homeDir + "\\Documents")) ? "\\Documents" : '' + "\\cmdChat";
 
 const data = { name: "", color: "#ffffff", beep: true, commandPath: saveFolder + '/commands' };
 
