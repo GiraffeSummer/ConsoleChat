@@ -6,8 +6,8 @@ const figlet = require('figlet');
 const boxen = require('boxen');
 const { NeuDB } = require('./lib/NeuDB.js');
 
-const homeDir = os.homedir()
-const saveFolder = (fs.existsSync(homeDir + "\\Documents")) ? "\\Documents" : '' + "\\cmdChat";
+const homeDir = os.homedir();
+const saveFolder = homeDir + ((fs.existsSync(homeDir + "/Documents")) ? "/Documents" : '') + "/cmdChat";
 
 const data = { name: "", color: "#ffffff", beep: true, commandPath: saveFolder + '/commands' };
 
