@@ -17,5 +17,11 @@ But some examples of console arguments are:
  - **port** - used to set server port, if this and mode is set it will auto launch the server (ex: `port=3000`)
  - **uri** - used to set the client connection uri, this will automatically launch and connect the client if mode is also set.
 
+
+## Issues  
+ some known issues are:
+ - Receiving a message when typing messes with your input (it does not clear it) I do not know how I would fix this, so this might have to wait.
+ - Colors don't work properly on a windows machine from a linux server. (windows based server works best)
+
 ## How to make a command?
 you can learn how to make a command [Here](HOW_TO_MAKE_COMMAND.md)
