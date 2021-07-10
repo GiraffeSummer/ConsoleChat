@@ -118,3 +118,4 @@ dist
 chat.json
 #ignore shortcuts
 *.lnk
+/public/wip

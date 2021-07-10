@@ -9,7 +9,7 @@ const { NeuDB } = require('./lib/NeuDB.js');
 const saveFolder = GetSavePath();
 
 
-const data = { name: "", color: "#ffffff", beep: true, commandPath: saveFolder + '/commands' };
+const data = { name: "", color: "#ffffff", beep: true, dataPath: saveFolder };
 
 const db = new NeuDB(data, true, saveFolder + '/chat.json');
 module.exports.db = db;
