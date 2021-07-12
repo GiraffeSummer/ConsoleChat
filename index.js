@@ -4,14 +4,13 @@ const rs = require('readline-sync');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const boxen = require('boxen');
-const { NeuDB } = require('./lib/NeuDB.js');
+const NeuDB = require('./lib/NeuDB.js');
 
 const saveFolder = GetSavePath();
 
-
 const data = { name: "", color: "#ffffff", beep: true, dataPath: saveFolder };
 
-const db = new NeuDB(data, true, saveFolder + '/chat.json');
+const db = new NeuDB({ data, autoSave: true, filePath: saveFolder + '/chat', asBinary: true });
 module.exports.db = db;
 
 if (db.get("name") == "") {
@@ -138,8 +137,8 @@ function GetSavePath() {
         const homeDir = os.homedir();
         _path = homeDir + "/Documents";
     } else {
-        if(os.userInfo().username == 'root') throw new Error('Do not run as root!');
-        
+        if (os.userInfo().username == 'root') throw new Error('Do not run as root!');
+
         _path = '/home/' + os.userInfo().username;
     }
     console.log(_path);
