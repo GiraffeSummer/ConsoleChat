@@ -21,7 +21,7 @@ if (db.get("name") == "") {
     db.set("name", rs.question("enter your name: "));
     db.set('color', RandomColor());
 } else {
-    console.log(db.get("name") + " Logged in. ");
+    console.log(chalk.hex(db.get('color'))(db.get("name")) + " Logged in. ");
 }
 
 //const isServer = rs.keyInYN('Do you want to be the server?')
