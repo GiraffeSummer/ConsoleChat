@@ -6,6 +6,8 @@ const figlet = require('figlet');
 const boxen = require('boxen');
 const NeuDB = require('./lib/NeuDB.js');
 
+const version = 0.5;
+
 const saveFolder = GetSavePath();
 
 const data = { name: "", color: "#ffffff", beep: true, dataPath: saveFolder };
@@ -13,11 +15,13 @@ const data = { name: "", color: "#ffffff", beep: true, dataPath: saveFolder };
 const db = new NeuDB({ data, autoSave: true, filePath: saveFolder + '/chat', asBinary: true });
 module.exports.db = db;
 
+
+console.log(`\nversion: ${chalk.cyan("v" + version)}`);
 if (db.get("name") == "") {
     db.set("name", rs.question("enter your name: "));
     db.set('color', RandomColor());
 } else {
-    console.log(db.get("name") + " Logged in.");
+    console.log(db.get("name") + " Logged in. ");
 }
 
 //const isServer = rs.keyInYN('Do you want to be the server?')
@@ -56,19 +60,21 @@ const MainMenu = (args = undefined) => {
                 connUrl = rs.question("server to connect to: (http://localhost:80) ", { defaultInput: "http://localhost:80" });
 
             const user = db.get();
-            const client = { name: user.name, color: user.color }
+            const client = { name: user.name, color: user.color, version }
 
             require("./lib/socket-client.js")(connUrl, client);
             break;
 
         case 'server':
+            if (!fs.existsSync(saveFolder)) fs.mkdirSync(saveFolder);
+
             let port;
             if (checkArgs && args['port'] !== undefined && args['port'] < 65535)
                 port = args['port'];
             else
                 port = rs.questionInt("server port: (80) ", { defaultInput: 80 });
 
-            require("./lib/socket-server.js").start(port);
+            require("./lib/socket-server.js").start(port, version);
             break;
         case menuOptions[2]:
             console.log("this is not implemented yet, please edit 'chat.json' for now");
@@ -142,6 +148,9 @@ function GetSavePath() {
         _path = '/home/' + os.userInfo().username;
     }
     console.log(_path);
+
+    if (!fs.existsSync(_path)) fs.mkdirSync(_path);
+
     return _path + '/cmdChat';
 }
 
