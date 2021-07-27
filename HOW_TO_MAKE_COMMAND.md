@@ -9,10 +9,12 @@ You will receive a few parameters with the function:
 
 ## server
 The server parameter will contain all the users in the server, and all the commands available., the base structure looks like this:
-```json
+```js
 { 
     commands: { }, 
-    users: { } 
+    users: { },
+    channels: { },
+    version: v0.0
 }
 ```
 <br>
@@ -20,7 +22,7 @@ The server parameter will contain all the users in the server, and all the comma
 ## msg
 The msg parameter will contain the message object.
 The message object:
-```json
+```js
 { 
     user: {
         name:"username",
@@ -30,7 +32,7 @@ The message object:
 }
 ```
 
-Furthermore there are 2 functions you can call from the msg object:
+Furthermore there are 3 functions you can call from the msg object:
 
 + ### send:
     Send will send a message to all the users in the channel.  
@@ -42,6 +44,15 @@ Furthermore there are 2 functions you can call from the msg object:
 + ### broadcast:
     Send will send a message to all the users in the server, across all channels.  
     Example: `msg.broadcast("message text");`
+
+and you can call 1 function from the `channel` object(s):
+
++ ### send:
+    This will send a message to all users in the channel
+    Example: `channel.send("message text")`
+
+
+All of these methods have a second parameter: `name`, this will allow you to change the name of who sent the message.
 
 
 You can also access the socket object through `msg.user.socket` I might eventually exclude this for safety, but I'm not sure  yet.
