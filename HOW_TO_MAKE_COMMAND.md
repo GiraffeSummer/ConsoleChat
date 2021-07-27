@@ -14,7 +14,7 @@ The server parameter will contain all the users in the server, and all the comma
     commands: { }, 
     users: { },
     channels: { },
-    version: v0.0
+    version: 0.0
 }
 ```
 <br>
@@ -28,6 +28,7 @@ The message object:
         name:"username",
          color:"hex color"
     },
+    channel: { },
     message: "message text" 
 }
 ```
