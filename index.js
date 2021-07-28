@@ -8,7 +8,7 @@ const NeuDB = require('./lib/NeuDB.js');
 
 const colors = require('./lib/colors.js').safe;
 
-const version = 0.5;
+const version = 0.6;
 
 const saveFolder = GetSavePath();
 
@@ -79,9 +79,27 @@ const MainMenu = (args = undefined) => {
             require("./lib/socket-server.js").start(port, version);
             break;
         case menuOptions[2]:
-            console.log("Work in progress");
+            //console.log("Work in progress");
+            const opts = ['name', 'color', 'sound']
 
-            ChangeColor();
+            const choice = opts[
+                rs.keyInSelect(opts, 'What do you want to edit? ')
+            ];
+
+            switch (choice) {
+                case 'name':
+                    db.set("name", rs.question("enter your name: "));
+                    break;
+                case 'color':
+                    ChangeColor();
+                    break;
+                case 'sound':
+                    db.set("beep", rs.keyInYN('Do you want Sounds enabled?'));
+                    break;
+                default:
+                    break;
+            }
+
             MainMenu();
             break;
         case 'exit()':
