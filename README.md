@@ -1,6 +1,6 @@
 # ConsoleChat
 
-This is a dumb project I worked on to learn.
+This is a fun project I started working on to teach myself some new techniques and to keep myself busy. 
 And just to see if I could get it to work.
 
 
@@ -25,3 +25,6 @@ But some examples of console arguments are:
 
 ## How to make a command?
 you can learn how to make a command [Here](HOW_TO_MAKE_COMMAND.md)
+
+## Events?
+you can learn custom event triggers [Here](EVENTS.md)

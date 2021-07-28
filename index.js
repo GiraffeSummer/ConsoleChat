@@ -6,6 +6,8 @@ const figlet = require('figlet');
 const boxen = require('boxen');
 const NeuDB = require('./lib/NeuDB.js');
 
+const colors = require('./lib/colors.js').safe;
+
 const version = 0.5;
 
 const saveFolder = GetSavePath();
@@ -35,7 +37,7 @@ const MainMenu = (args = undefined) => {
         mode = menuOptions[args['mode'] - 1]
     } else {
         mode = menuOptions[
-            rs.keyInSelect(menuOptions, 'What do you want to do ' + db.get('name'), {
+            rs.keyInSelect(menuOptions, 'What do you want to do ' + chalk.hex(db.get('color'))(db.get("name")), {
                 cancel: false
             })
         ];
@@ -77,7 +79,9 @@ const MainMenu = (args = undefined) => {
             require("./lib/socket-server.js").start(port, version);
             break;
         case menuOptions[2]:
-            console.log("this is not implemented yet, please edit 'chat.json' for now");
+            console.log("Work in progress");
+
+            ChangeColor();
             MainMenu();
             break;
         case 'exit()':
@@ -88,6 +92,25 @@ const MainMenu = (args = undefined) => {
             console.clear();
             MainMenu();
             break;
+    }
+}
+
+function ChangeColor() {
+    console.log("Changing color..")
+    const maxLength = 9;
+    let shortenedList = Shuffle(colors);
+    const sliceNum = Math.floor(Math.random() * colors.length - maxLength);
+    shortenedList = shortenedList.slice(sliceNum, sliceNum + maxLength);
+    const result = rs.keyInSelect(
+        shortenedList.map(x => chalk.hex(x.value)(x.name.replace('_', " "))),
+        'What color do you want to pick ' + chalk.hex(db.get('color'))(db.get("name"))
+    );
+    if (result == -1) {
+        console.log("Keeping current color!");
+    } else {
+        const color = shortenedList[result];
+        db.set('color', color.value);
+        console.log("Color Set to: " + chalk.hex(db.get('color'))(color.name));
     }
 }
 
@@ -152,6 +175,10 @@ function GetSavePath() {
     if (!fs.existsSync(_path)) fs.mkdirSync(_path);
 
     return _path + '/cmdChat';
+}
+
+function Shuffle(array) {
+    return array.sort((a, b) => 0.5 - Math.random());
 }
 
 //greeting user
