@@ -90,9 +90,37 @@ A fun feature to know, you can use npm packages, you just need to run: `npm i [p
 
 <br>
 
-As of now I do not expose the eventmanager object yet, so you cannot run custom events yet, but I will hopefully in the future.
-I want to figure out how to do this the best way.
-I'm considering on putting it in the `server` object, let me know if you like this idea.
+## Custom events
+You can create custom events by subscribing them to the eventManager. (recommended to do in the `ready` event)
+
+You can subscribe an event using the `Subscribe` function
+
+an example from the `ready` event:
+```js
+module.exports = (server) => {
+    const data = { version: server.version, mainChannel: server.mainChannelName };
+
+    server.eventManager.Subscribe('custom', server);
+
+    server.eventManager.Run('custom', { server, ...data })
+}
+```
+
+So you use `server.eventManager.Subscribe()` to subscribe the event, you need to pass in the event name, as a string, and the server object. You do not need to do anything about the server object!
+  
+You can trigger an event by using `server.eventManager.Run()` 
+you need to pass in the event name as a string again. and then as second parameter, you need to pass in the server object again.
+and then any data you'd like to pass with it, you can spread any objects (like in the example), and it should work fine.
+  
+An example event trigger for this event could be:
+```js
+module.exports = (server, version, mainChannel) => {
+    console.log('Server version: ', version);
+}
+```
+
+
+
 
 <br>
 

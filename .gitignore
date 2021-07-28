@@ -119,3 +119,6 @@ chat.json
 #ignore shortcuts
 *.lnk
 /public/wip
+
+#temporary
+OBJECT_REFERENCE.md
