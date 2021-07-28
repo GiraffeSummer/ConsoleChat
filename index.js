@@ -29,7 +29,7 @@ if (db.get("name") == "") {
 //const isServer = rs.keyInYN('Do you want to be the server?')
 
 const MainMenu = (args = undefined) => {
-    const menuOptions = ['client', 'server', 'edit (WIP)', 'exit()'];
+    const menuOptions = ['client', 'server', 'edit', 'exit()'];
     let mode;
 
     const checkArgs = !(args == undefined);
