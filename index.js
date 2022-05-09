@@ -3,7 +3,6 @@ const fs = require("fs");
 const rs = require('readline-sync');
 const chalk = require('chalk');
 const figlet = require('figlet');
-const boxen = require('boxen');
 const NeuDB = require('./lib/NeuDB.js');
 
 const colors = require('./lib/colors.js').safe;
@@ -49,7 +48,8 @@ const MainMenu = (args = undefined) => {
         for (let i = 0; i < keys.length; i++) {
             text += keys[i] + ": " + args[keys[i]] + "\n";
         }
-        console.log(boxen(text, { borderColor: 'blue' }))
+        //console.log(boxen(text, { borderColor: 'blue' }))//using 'boxen' package
+        console.log(text)
     }
 
 
