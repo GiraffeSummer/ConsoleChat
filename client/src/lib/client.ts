@@ -1,22 +1,6 @@
 import io from "socket.io-client";
 import { writable } from "svelte/store"
-interface User {
-    name: string,
-    color: string,
-    version: number,
-    channel: Channel,
-    socket: any
-}
-interface Client {
-    name: string,
-    color: string,
-    version: number,
-}
-
-interface Channel {
-    name: string,
-    users: Array<User>
-}
+import type { User, Client, Channel } from './Definitions'
 
 const messages = writable([])
 
@@ -66,7 +50,11 @@ function Connect(ser: string, client: Client) {
         line = line.trim();
         if (line === "leave()") Disconnect();
 
-        socket.emit("message", { user: client, message: line });
+        const msg = { user: client, message: line };
+
+        receiveMessage(msg)
+
+        socket.emit("message", msg);
     }
     connection = io;
     return { io, socket };

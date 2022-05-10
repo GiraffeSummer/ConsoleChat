@@ -2,10 +2,14 @@
   export let message;
 </script>
 
-<div>
-    <span style="color: {message.user.color};">{message.user.name}: </span>{message.message}
+<div class="terminal-card">
+  <header>
+    <span style="color: {message.user.color};">> {message.user.name} _</span>
+  </header>
+  <div>
+    {message.message}
+  </div>
 </div>
 
 <style>
- 
 </style>
