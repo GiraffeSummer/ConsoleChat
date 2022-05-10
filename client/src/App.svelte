@@ -1,7 +1,7 @@
 <script lang="ts">
   import Center from './components/Center.svelte';
   import Message from './components/Message.svelte';
-  import { messages, Connect } from './lib/client.ts';
+  import { messages, Connect, data } from './lib/client.ts';
 
   Connect('http://localhost:80', {
     name: 'browser',
@@ -12,7 +12,15 @@
 
 <main>
   <Center>
-    <span slot="left">hi</span>
+    <span slot="left">
+      {#if $data.channels}
+        {#each $data.channels as channel}
+          <tr class="clickable">
+            {channel}
+          </tr>
+        {/each}
+      {/if}
+    </span>
     <span>
       {#each $messages as message}
         <Message {message} />
@@ -22,4 +30,7 @@
 </main>
 
 <style>
+  .clickable {
+    cursor: pointer;
+  }
 </style>

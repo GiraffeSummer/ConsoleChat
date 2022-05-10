@@ -11,3 +11,9 @@
     </td>
   </tr>
 </table>
+
+<style>
+  td {
+    border: none;
+  }
+</style>

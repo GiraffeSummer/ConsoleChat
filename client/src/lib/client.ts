@@ -31,6 +31,7 @@ const chalk = {
 
 let connection = null;
 let sendMessage: Function | null = null;
+const data = writable({})
 
 function Connect(ser: string, client: Client) {
     const receiveMessage = (msg) => {
@@ -47,6 +48,11 @@ function Connect(ser: string, client: Client) {
         socket.emit('join', client);
     });
 
+    socket.on('data', (_data) => {
+        console.log(_data)
+        data.set(_data)
+    });
+
     socket.on("connect_failed", errorFunc);
     socket.on("connect_error", errorFunc);
 
@@ -55,7 +61,6 @@ function Connect(ser: string, client: Client) {
         const name = (msg.name !== undefined) ? msg.name : "SERVER";
         console.log(chalk.hex('#14A908')(`<${name}> `) + msg.text);
     });
-
 
     sendMessage = function (line: string) {
         line = line.trim();
@@ -79,4 +84,4 @@ function Send(text: string) {
     } else throw new Error("Sendmessage is not available, please connect first");
 }
 
-export { Connect, connection, Send, Disconnect, messages }
+export { Connect, connection, Send, Disconnect, messages, data }
